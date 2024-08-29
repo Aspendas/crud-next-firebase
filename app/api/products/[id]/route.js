@@ -42,3 +42,10 @@ export async function DELETE(request, { params }) {
     });
   }
 }
+
+export async function OPTIONS(request) {
+  return new Response(null, {
+    status: 204,
+    headers: corsHeaders,
+  });
+}

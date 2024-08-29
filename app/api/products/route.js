@@ -43,3 +43,10 @@ export async function POST(request) {
     });
   }
 }
+
+export async function OPTIONS(request) {
+  return new Response(null, {
+    status: 204,
+    headers: corsHeaders,
+  });
+}
