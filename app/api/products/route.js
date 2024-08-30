@@ -31,10 +31,13 @@ export async function POST(request) {
   try {
     const newProduct = await request.json();
     const docRef = await addDoc(collection(db, "products"), newProduct);
-    return new Response(JSON.stringify({ id: docRef.id, ...newProduct }), {
-      status: 201,
-      headers: corsHeaders,
-    });
+    return new Response(
+      JSON.stringify({ id: docRef.id, createdAt: Date.now(), ...newProduct }),
+      {
+        status: 201,
+        headers: corsHeaders,
+      }
+    );
   } catch (error) {
     console.error("Error adding product:", error);
     return new Response(JSON.stringify({ error: "Failed to add product" }), {
